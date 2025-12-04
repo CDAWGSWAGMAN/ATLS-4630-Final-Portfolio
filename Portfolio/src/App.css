@@ -42,6 +42,13 @@ body {
   justify-content: flex-start;
 }
 
+.hero-splitflap-inner {
+  position: relative;   /* needed for positioning the arrow */
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 .splitflap-stack {
   display: flex;
   flex-direction: column;
@@ -138,7 +145,7 @@ body {
   border-top: 1px solid rgba(148, 163, 184, 0.35); 
 }
 
-.section:first-of-type {
+.section-top {
   border-top: none;
 }
 
@@ -173,6 +180,13 @@ body {
 
 .skill-logo {
   font-size: 1.1rem;
+}
+
+.skill-logo-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
 }
 
 
@@ -407,13 +421,12 @@ body {
   border: 1px solid rgba(15, 23, 42, 0.9);
   background: radial-gradient(circle at top left, #0f172a, #020617);
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
-  min-height: 260px;
+  /* remove min-height controlling things weirdly */
+  /* min-height: 260px; */
+  padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #e5e7eb;
-  font-size: 1.2rem;
-  font-weight: 500;
+  align-items: stretch;
+  justify-content: stretch;
   overflow: hidden;
 }
 
@@ -733,4 +746,243 @@ body {
   object-fit: contain;
   display: block;
 }
+
+/* Intro */
+.intro-blurb {
+  max-width: 720px;
+  margin: 2.5rem auto 0;
+  text-align: center;
+}
+
+.intro-blurb p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* Scroll indicator – visible by default */
+.hero-scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;           /* bigger so we can see it */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #111827;            /* dark text so it pops */
+  margin-left: 0.2rem;
+  padding: 0.25rem 0.6rem;   /* give it a bit of cushion */
+  
+}
+
+.hero-scroll-label {
+  opacity: 1;
+  font-weight: 600;
+}
+
+.hero-scroll-arrow {
+  font-size: 1.4rem;
+  font-weight: 700;
+  animation: hero-bounce 1.4s infinite;
+}
+
+/* bounce animation */
+@keyframes hero-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(6px);
+  }
+  60% {
+    transform: translateY(3px);
+  }
+}
+
+
+
+
+/* On tablets/phones, keep it hidden */
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
+/* --- Project detail carousel --- */
+
+.project-detail-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  height: 100%;
+}
+
+.project-detail-main {
+  position: relative;
+  width: 100%;
+
+  /* Consistent box for all slides */
+  aspect-ratio: 16 / 9;        /* try 4 / 3 if you want taller */
+  max-height: 420px;
+
+  border-radius: 20px;
+  overflow: hidden;
+  background: #020617;         /* visible behind letterboxing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.project-detail-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* 👈 show the whole image */
+  display: block;
+}
+
+.project-detail-main video.project-detail-media-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* 👈 show the whole video */
+  display: block;
+}
+
+
+/* Arrow buttons */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(15, 23, 42, 0.8);
+  color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-arrow-left {
+  left: 0.5rem;
+}
+
+.carousel-arrow-right {
+  right: 0.5rem;
+}
+
+.carousel-arrow:hover {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+/* Thumbnails row */
+
+.project-detail-thumbs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.2rem 0.1rem;
+}
+
+.thumb {
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  flex: 0 0 60px;
+  height: 40px;
+  opacity: 0.6;
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-active {
+  opacity: 1;
+  border-color: rgba(15, 23, 42, 0.9);
+}
+
+
+/* Fade-in on scroll wrapper */
+.fade-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+
+/* Simple label for video thumbnails */
+.thumb-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+}
+
+.below-hero {
+  background: #ffffff;
+  padding-bottom: 4rem;
+}
+
+/* optional: make it feel like a card coming off the grey */
+@media (min-width: 768px) {
+  .below-hero {
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -4px 30px rgba(15, 23, 42, 0.08);
+  }
+}
+
+/* New: real project media at top of card */
+.project-card-media {
+  height: 150px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.2);
+  overflow: hidden;
+  background: #0b1120;
+}
+
+.project-card-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills the box nicely */
+  display: block;
+}
+
 

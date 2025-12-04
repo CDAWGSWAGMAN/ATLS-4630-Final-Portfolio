@@ -10,10 +10,10 @@ export function SocialLinks() {
     <div className="social-links">
       {/* Email */}
       <a
-        href="cmalbers21@gmail.com" 
-        aria-label="Email"
-        className="social-icon"
-      >
+      href="mailto:cmalbers21@gmail.com"
+      aria-label="Email"
+      className="social-icon"
+    >
         <img src={emailIcon} alt="Email" className="social-icon-img" />
       </a>
 

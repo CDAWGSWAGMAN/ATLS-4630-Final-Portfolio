@@ -11,6 +11,7 @@ import { ProjectsSection } from "./sections/ProjectSection";
 import { ContactSection } from "./sections/ContactSection";
 
 import { ProjectDetails } from "./projects/ProjectDetails";
+import { FadeInOnScroll } from "./components/FadeInOnScroll";
 
 import { projects } from "./data/project";
 import type { Project } from "./types";
@@ -27,7 +28,18 @@ export default function App() {
 
   function handleProjectClick(project: Project) {
     setSelectedProject(project);
+    // when going into a project, show the top of the detail page
     window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  function handleBackToPortfolio() {
+    // swap back to main portfolio view
+    setSelectedProject(null);
+
+    // after React switches the view, scroll to the Projects section
+    setTimeout(() => {
+      scrollToSection("projects");
+    }, 0);
   }
 
   // Project detail “page”
@@ -35,11 +47,10 @@ export default function App() {
     return (
       <div className="page">
         <SocialLinks />
-
-        <div className="page-inner">
+        <div className="project-detail-shell">
           <ProjectDetails
             project={selectedProject}
-            onBack={() => setSelectedProject(null)}
+            onBack={handleBackToPortfolio}
           />
         </div>
       </div>
@@ -51,24 +62,50 @@ export default function App() {
     <div className="page">
       <SocialLinks />
 
-      <div className="page-inner">
-        <Hero />
+      <Hero />
 
+      <div className="below-hero">
         <SectionNav
+          onAboutClick={() => scrollToSection("about")}
           onSkillsClick={() => scrollToSection("skills")}
           onProjectsClick={() => scrollToSection("projects")}
           onContactClick={() => scrollToSection("contact")}
         />
 
         <main className="content">
-          <SkillsSection />
+          {/* ABOUT SECTION */}
+          <FadeInOnScroll>
+            <section id="about" className="section section-top">
+              <h2>About</h2>
+              <div className="intro-blurb">
+                <p>
+                  As a multidisciplinary developer and designer, I specialize in
+                  blending technical skills with creative thinking. With
+                  expertise ranging from front-end web development to 3D
+                  modeling, I create solutions that are both functional and
+                  visually engaging.
+                </p>
+              </div>
+            </section>
+          </FadeInOnScroll>
 
-          <ProjectsSection
-            projects={projects}
-            onProjectClick={handleProjectClick}
-          />
+          {/* SKILLS */}
+          <FadeInOnScroll delayMs={80}>
+            <SkillsSection />
+          </FadeInOnScroll>
 
-          <ContactSection />
+          {/* PROJECTS */}
+          <FadeInOnScroll delayMs={120}>
+            <ProjectsSection
+              projects={projects}
+              onProjectClick={handleProjectClick}
+            />
+          </FadeInOnScroll>
+
+          {/* CONTACT */}
+          <FadeInOnScroll delayMs={160}>
+            <ContactSection />
+          </FadeInOnScroll>
         </main>
       </div>
     </div>

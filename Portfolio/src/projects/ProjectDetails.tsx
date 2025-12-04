@@ -1,4 +1,5 @@
 // src/projects/ProjectDetails.tsx
+import { useState } from "react";
 import type { Project } from "../types";
 
 type ProjectDetailsProps = {
@@ -6,18 +7,111 @@ type ProjectDetailsProps = {
   onBack: () => void;
 };
 
+type Slide = {
+  src: string;
+  isVideo: boolean;
+};
+
 export function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
+  // Build a list of slides from gallery or fallback image
+  const rawSources: string[] =
+    project.gallery && project.gallery.length > 0
+      ? project.gallery
+      : project.image
+      ? [project.image]
+      : [];
+
+  const slides: Slide[] = rawSources.map((src) => ({
+    src,
+    isVideo: /\.(mp4|webm|ogg|mov)$/i.test(src),
+  }));
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  function goPrev() {
+    if (slides.length <= 1) return;
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }
+
+  function goNext() {
+    if (slides.length <= 1) return;
+    setCurrentIndex((prev) =>
+      prev === slides.length - 1 ? 0 : prev + 1
+    );
+  }
+
+  const currentSlide = slides[currentIndex];
+
   return (
     <div className="project-detail-page">
-      <button className="back-button" onClick={onBack}>
-        ← Back to portfolio
-      </button>
+      <button className="back-button back-button-fixed" onClick={onBack}>
+  ← Back to portfolio
+</button>
 
       <header className="project-detail-header">
         <div className="project-detail-image">
-          {/* This is were image goes */}
-          {project.image ? (
-            <img src={project.image} alt={project.title} />
+          {slides.length > 0 ? (
+            <div className="project-detail-carousel">
+              <div className="project-detail-main">
+                {slides.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="carousel-arrow carousel-arrow-left"
+                      onClick={goPrev}
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      className="carousel-arrow carousel-arrow-right"
+                      onClick={goNext}
+                    >
+                      ›
+                    </button>
+                  </>
+                )}
+
+                {currentSlide.isVideo ? (
+                  <video
+                    src={currentSlide.src}
+                    className="project-detail-media-video"
+                    controls
+                  />
+                ) : (
+                  <img
+                    src={currentSlide.src}
+                    alt={`${project.title} — ${currentIndex + 1} of ${
+                      slides.length
+                    }`}
+                  />
+                )}
+              </div>
+
+              {slides.length > 1 && (
+                <div className="project-detail-thumbs">
+                  {slides.map((slide, idx) => (
+                    <button
+                      key={slide.src + idx}
+                      type="button"
+                      className={
+                        "thumb" + (idx === currentIndex ? " thumb-active" : "")
+                      }
+                      onClick={() => setCurrentIndex(idx)}
+                    >
+                      {slide.isVideo ? (
+                        <div className="thumb-video">▶</div>
+                      ) : (
+                        <img
+                          src={slide.src}
+                          alt={`${project.title} thumbnail ${idx + 1}`}
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ) : (
             <span>{project.title}</span>
           )}
@@ -42,7 +136,6 @@ export function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
                 ))}
               </div>
             </div>
-            {/* add more meta blocks here. */}
           </div>
         </div>
       </header>
