@@ -41,7 +41,7 @@ export function SocialLinks() {
 
       {/* Resume */}
       <a
-        href="/resume.pdf" // resume.pdf in /public
+        href="/resume.pdf" 
         target="_blank"
         rel="noreferrer"
         aria-label="Resume"

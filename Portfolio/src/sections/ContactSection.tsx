@@ -1,4 +1,3 @@
-// src/sections/ContactSection.tsx
 import { useState } from "react";
 
 const FORM_ENDPOINT = "https://formspree.io/f/xgvgygnn";

@@ -1,9 +1,8 @@
-// src/components/FadeInOnScroll.tsx
 import { useEffect, useRef, useState } from "react";
 
 type FadeInOnScrollProps = {
   children: React.ReactNode;
-  delayMs?: number; // optional stagger delay
+  delayMs?: number; 
 };
 
 export function FadeInOnScroll({ children, delayMs = 0 }: FadeInOnScrollProps) {
@@ -19,12 +18,12 @@ export function FadeInOnScroll({ children, delayMs = 0 }: FadeInOnScrollProps) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            observer.unobserve(entry.target); // only animate once
+            observer.unobserve(entry.target); 
           }
         });
       },
       {
-        // Trigger a bit before it's fully in view
+        
         threshold: 0.15,
       }
     );

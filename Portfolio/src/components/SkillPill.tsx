@@ -1,4 +1,3 @@
-// src/components/SkillPill.tsx
 import type React from "react";
 
 type SkillPillProps = {

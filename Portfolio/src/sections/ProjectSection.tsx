@@ -1,4 +1,3 @@
-// src/sections/ProjectSection.tsx
 import type { Project } from "../types";
 
 type ProjectsSectionProps = {

@@ -1,4 +1,3 @@
-// src/components/SplitFlap.tsx
 import { useEffect, useMemo, useState } from "react";
 import "../App.css";
 
@@ -15,13 +14,13 @@ type SplitFlapProps = {
 };
 
 export function SplitFlap({ lines }: SplitFlapProps) {
-  // 1) uppercase
+  //  uppercase
   const contentLines = useMemo(
     () => lines.map((l) => l.toUpperCase()),
     [lines]
   );
 
-  // 2) how many columns the board has
+  //  how many columns the board has
   const maxLen = useMemo(
     () =>
       Math.max(
@@ -31,7 +30,7 @@ export function SplitFlap({ lines }: SplitFlapProps) {
     [contentLines]
   );
 
-  // 3)  "target" lines 
+  //   "target" lines 
   const logicalLines = useMemo(() => {
     const blankRow = "".padEnd(maxLen, " ");
 
@@ -52,12 +51,12 @@ export function SplitFlap({ lines }: SplitFlapProps) {
     [logicalLines]
   );
 
-  // 4) currently displayed on the board
+  // currently displayed on the board
   const [displayMatrix, setDisplayMatrix] = useState<string[][]>(() =>
     targetMatrix.map((row) => row.map(() => " "))
   );
 
-  // 5) spin each cell through random characters until it hits the target
+  // spin each cell through random characters until it hits the target
   useEffect(() => {
     const timers: number[] = [];
 

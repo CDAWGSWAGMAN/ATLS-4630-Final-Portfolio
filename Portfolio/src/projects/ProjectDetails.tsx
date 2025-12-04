@@ -1,4 +1,3 @@
-// src/projects/ProjectDetails.tsx
 import { useState } from "react";
 import type { Project } from "../types";
 
@@ -13,7 +12,6 @@ type Slide = {
 };
 
 export function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
-  // Build a list of slides from gallery or fallback image
   const rawSources: string[] =
     project.gallery && project.gallery.length > 0
       ? project.gallery

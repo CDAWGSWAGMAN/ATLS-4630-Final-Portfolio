@@ -1,6 +1,5 @@
 import type { Project } from "../types";
 
-// Pocket Breathalyzer
 import brFinal from "../assets/BRFinal.jpg";
 import brAssemble from "../assets/BRAsemble.jpg";
 import brProto from "../assets/BRPrototype1.jpg";
@@ -58,7 +57,7 @@ export const projects: Project[] = [
     processText:   "Sir-Charts-A-Lot started as a hackathon idea: what if generating charts from messy data felt more like talking to a helpful character than fighting with a settings panel? My team and I wanted to make data tools less intimidating, especially for people who don’t think of themselves as “data people.” I took the lead on UX and visual design, exploring how a medieval assistant—our knight—could guide users through uploading data, picking chart types, and refining the output while still feeling professional enough to trust.\n\nI began by mapping out the core flow: import data → understand what’s in it → choose a visualization → refine. From there, I built Figma wireframes that paired straightforward layouts with medieval touches like banners, shields, and scroll-like panels. User feedback from quick hallway tests pushed me to simplify choices and reduce cognitive load: fewer chart options upfront, clear defaults, and strong empty states explaining what to do next. I iterated on the tone of voice for the knight so the theme stayed fun without getting in the way of the work. By the end, Sir-Charts-A-Lot felt like a focused assistant: it used AI to suggest helpful charts, offered a bit of personality, and showed how playful theming can coexist with genuinely useful, legible data visualization."
 
   },
-  // add more
+  
   {
     id: "A.L.A.N.-Alarm Clock",
     title: "A.L.A.N. Alarm Clock",

@@ -7,7 +7,7 @@
   /* FORCE LIGHT MODE ONLY */
   color-scheme: light;
 
-  /* Light palette to match your app */
+  
   color: #111827;
   background-color: #e5e5e5;
 
@@ -17,7 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Links (optional, tweak if you want) */
+
 a {
   font-weight: 500;
   color: #1d4ed8;
@@ -27,14 +27,14 @@ a:hover {
   color: #1e40af;
 }
 
-/* Let App.css control layout; just reset defaults here */
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
 }
 
-/* Buttons – neutral light style */
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -54,6 +54,4 @@ button:focus-visible {
   outline: 3px solid #1d4ed8;
 }
 
-/* 🚫 IMPORTANT: remove this block completely:
-   @media (prefers-color-scheme: light) { ... }
-   We don't want dark-vs-light branching anymore. */
+

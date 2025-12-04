@@ -1,4 +1,3 @@
-// src/components/SectionNav.tsx
 type SectionNavProps = {
   onAboutClick: () => void;
   onSkillsClick: () => void;

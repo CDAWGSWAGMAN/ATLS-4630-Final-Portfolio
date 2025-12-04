@@ -1,4 +1,3 @@
-// src/components/Hero.tsx
 import "../App.css";
 import { SplitFlap } from "./SplitFlap";
 import headshot from "../assets/headshot.jpg";
@@ -17,7 +16,7 @@ export function Hero() {
             ]}
           />
 
-          {/* Desktop-only scroll indicator */}
+          {}
           <div className="hero-scroll-indicator">
             <span className="hero-scroll-label">Scroll</span>
             <span className="hero-scroll-arrow">↓</span>

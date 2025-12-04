@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState } from "react";
 import "./App.css";
 
@@ -28,21 +27,21 @@ export default function App() {
 
   function handleProjectClick(project: Project) {
     setSelectedProject(project);
-    // when going into a project, show the top of the detail page
+    
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
   function handleBackToPortfolio() {
-    // swap back to main portfolio view
+   
     setSelectedProject(null);
 
-    // after React switches the view, scroll to the Projects section
+    // scroll to the Projects section
     setTimeout(() => {
       scrollToSection("projects");
     }, 0);
   }
 
-  // Project detail “page”
+  // Project detail page
   if (selectedProject) {
     return (
       <div className="page">
