@@ -78,7 +78,7 @@ export const projects: Project[] = [
       Sounds, SoundVideo
     ],
     skills: ["HTML", "CSS", "JavaScript"],
-    shortDescription: "A very difficult way to tunr volume up and down on your computer.",
+    shortDescription: "A very difficult way to turn volume up and down on your computer.",
     processText:   "Impossible Sound was a deliberate exercise in bad interaction design: we were asked to make turning the computer volume up or down as difficult as possible. Instead of using a normal slider, I designed a system of constantly moving circles, each carrying a value like '+1' or '−1'. As these circles bounced around and collided, they swapped values with each other, so there was no stable, predictable control point. To change the volume, the user had to click on a circle at just the right moment, hoping to catch a positive or negative value.\n\nDesigning this meant thinking less about usability and more about controlled chaos. I experimented with speed, number of circles, and collision behavior to keep the interface just barely usable but deeply annoying. Too slow and it felt like a quirky alternative slider; too fast and it became impossible to interact with at all. The final version creates this uneasy space where users feel like they’re playing a tiny, rigged game instead of adjusting a simple setting. As a project, it helped me understand why good interaction patterns exist in the first place—by breaking all the norms on purpose, it highlighted how much we rely on predictability, feedback, and direct manipulation in everyday interfaces."
 
 
